@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="72dp"
-    tools:context="edu.aku.hassannaqvi.mapps_s1.activities.SectionAActivity">
+    tools:context="edu.aku.hassannaqvi.mapps_s1.activities.EndingActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,46 +25,57 @@
             android:textStyle="bold"
             tools:typeface="serif" />
 
-        <!--<TextView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/iStatus" />
+            android:layout_marginTop="8dp"
+            android:text="@string/mps1a12" />
+
 
         <RadioGroup
-            android:id="@+id/iStatus"
+            android:id="@+id/mps1a12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <RadioButton
-                android:id="@+id/mna7a"
+                android:id="@+id/mps1a1201"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="@string/mna7a" />
+                android:text="@string/mps1a1201" />
 
             <RadioButton
-                android:id="@+id/mna7b"
+                android:id="@+id/mps1a1202"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="@string/mna7b" />
+                android:text="@string/mps1a1202" />
 
             <RadioButton
-                android:id="@+id/mna7c"
+                android:id="@+id/mps1a1203"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="@string/mna7c" />
+                android:text="@string/mps1a1203" />
 
             <RadioButton
-                android:id="@+id/mna7d"
+                android:id="@+id/mps1a1204"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="@string/mna7d" />
+                android:text="@string/mps1a1204" />
+
+            <RadioButton
+                android:id="@+id/mps1a1205"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:text="@string/mps1a1205" />
+
         </RadioGroup>
--->
+
+
+        -->
         <Button
             android:id="@+id/btnEnd"
             android:layout_width="match_parent"

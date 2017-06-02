@@ -3,6 +3,9 @@ package edu.aku.hassannaqvi.mapps_s1.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
@@ -18,19 +21,19 @@ public class EndingActivity extends Activity {
     private static final String TAG = EndingActivity.class.getSimpleName();
 
     @BindView(R.id.activity_section_a)
-    ScrollView activitySectionA;
-
-    /*@BindView(R.id.iStatus)
-    RadioGroup iStatus;
-    @BindView(R.id.mna7a)
-    RadioButton mna7a;
-    @BindView(R.id.mna7b)
-    RadioButton mna7b;
-    @BindView(R.id.mna7c)
-    RadioButton mna7c;
-    @BindView(R.id.mna7d)
-    RadioButton mna7d;
-*/
+    ScrollView activityEnding;
+    @BindView(R.id.mps1a12)
+    RadioGroup mps1a12;
+    @BindView(R.id.mps1a1201)
+    RadioButton mps1a1201;
+    @BindView(R.id.mps1a1202)
+    RadioButton mps1a1202;
+    @BindView(R.id.mps1a1203)
+    RadioButton mps1a1203;
+    @BindView(R.id.mps1a1204)
+    RadioButton mps1a1204;
+    @BindView(R.id.mps1a1205)
+    RadioButton mps1a1205;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,15 +104,15 @@ public class EndingActivity extends Activity {
 
     private boolean formValidation() {
         Toast.makeText(this, "Validating Closing Section", Toast.LENGTH_SHORT).show();
-
-        /*if (mna7.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mna7), Toast.LENGTH_LONG).show();
-            mna7d.setError("This data is Required!");
-            Log.i(TAG, "mnd9: This data is Required!");
+//=================== mps1b01 ==============
+        if (mps1a12.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.mps1a12), Toast.LENGTH_SHORT).show();
+            mps1a1203.setError("This data is Required!");
+            Log.i(TAG, "mps1a12: This Data is Required!");
             return false;
         } else {
-            mna7d.setError(null);
-        }*/
+            mps1a1203.setError(null);
+        }
         return true;
     }
 }

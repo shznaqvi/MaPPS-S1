@@ -4,20 +4,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
-import android.widget.TimePicker;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,40 +35,20 @@ public class SectionAActivity extends Activity {
     EditText mps1a03;
     @BindView(R.id.mps1a04)
     EditText mps1a04;
-    @BindView(R.id.btnChangeCluster)
-    ToggleButton btnChangeCluster;
     @BindView(R.id.mps1a05)
     EditText mps1a05;
-    @BindView(R.id.btnChangeVillage)
-    ToggleButton btnChangeVillage;
     @BindView(R.id.mps1a06)
     EditText mps1a06;
     @BindView(R.id.mps1a07)
     EditText mps1a07;
     @BindView(R.id.mps1a08)
     EditText mps1a08;
-    @BindView(R.id.mps1a09)
-    DatePicker mps1a09;
-    @BindView(R.id.mps1a10)
-    TimePicker mps1a10;
     @BindView(R.id.mps1a11)
     RadioGroup mps1a11;
     @BindView(R.id.mps1a1101)
     RadioButton mps1a1101;
     @BindView(R.id.mps1a1102)
     RadioButton mps1a1102;
-    @BindView(R.id.mps1a12)
-    RadioGroup mps1a12;
-    @BindView(R.id.mps1a1201)
-    RadioButton mps1a1201;
-    @BindView(R.id.mps1a1202)
-    RadioButton mps1a1202;
-    @BindView(R.id.mps1a1203)
-    RadioButton mps1a1203;
-    @BindView(R.id.mps1a1204)
-    RadioButton mps1a1204;
-    @BindView(R.id.mps1a1205)
-    RadioButton mps1a1205;
     @BindView(R.id.fldGrpbtn)
     LinearLayout fldGrpbtn;
 
@@ -219,9 +194,8 @@ public class SectionAActivity extends Activity {
         sa.put("mps1a04", mps1a04.getText().toString());
         sa.put("mps1a07", mps1a07.getText().toString());
         sa.put("mps1a08", mps1a08.getText().toString());
-        sa.put("mps1a09", new SimpleDateFormat("dd-MM-yyyy").format(mps1a09.getCalendarView().getDate()));
         sa.put("mps1a11", mps1a1101.isChecked() ? "1" : mps1a1102.isChecked() ? "2" : "0");
-        sa.put("mps1a12", mps1a1201.isChecked() ? "1" : mps1a1202.isChecked() ? "2" : mps1a1203.isChecked() ? "2" : mps1a1204.isChecked() ? "2" : mps1a1205.isChecked() ? "2" : "0");
+
 
         // setGPS();
 
@@ -330,15 +304,6 @@ public class SectionAActivity extends Activity {
             mps1a1102.setError(null);
         }
 
-        //=================== mps1a12==============
-        if (mps1a12.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.mps1a12), Toast.LENGTH_SHORT).show();
-            mps1a1205.setError("This data is Required!");
-            Log.i(TAG, "mps1a12: This Data is Required!");
-            return false;
-        } else {
-            mps1a1205.setError(null);
-        }
 
 
         return true;

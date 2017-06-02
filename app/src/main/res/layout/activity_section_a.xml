@@ -96,77 +96,35 @@
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:hint="@string/mps1a04" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/mps1a05" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal">
-
-            <ToggleButton
-                android:id="@+id/btnChangeCluster"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.3"
-                android:background="@drawable/check"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:gravity="center"
-                android:padding="5dp"
-                android:textOff=""
-                android:textOn="" />
-
-            <EditText
-                android:id="@+id/mps1a05"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="@color/colorHeading"
-                android:hint="@string/mps1a05" />
-
-        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/mps1a03" />
+
+        <EditText
+            android:id="@+id/mps1a05"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="@string/mps1a05" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
             android:text="@string/mps1a06" />
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/mps1a06"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal">
-
-            <ToggleButton
-                android:id="@+id/btnChangeVillage"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="0.3"
-                android:background="@drawable/check"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:gravity="center"
-                android:padding="5dp"
-                android:textOff=""
-                android:textOn="" />
-
-            <EditText
-                android:id="@+id/mps1a06"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="@color/colorHeading"
-                android:hint="@string/mps1a06" />
-
-        </LinearLayout>
+            android:layout_marginTop="1dp"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="@string/mps1a06" />
 
         <TextView
             android:layout_width="match_parent"
@@ -198,36 +156,7 @@
             android:inputType="number"
             android:maxLength="10" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/mps1a09" />
 
-        <DatePicker
-            android:id="@+id/mps1a09"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"
-            android:ems="10"
-            android:spinnersShown="true" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/mps1a10" />
-
-        <TimePicker
-            android:id="@+id/mps1a10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:spinnersShown="true"
-            android:timePickerMode="spinner" />
 
 
         <TextView
@@ -255,55 +184,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
                 android:text="@string/no" />
-
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/mps1a11" />
-
-
-        <RadioGroup
-            android:id="@+id/mps1a12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/mps1a1201"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:text="@string/mps1a1201" />
-
-            <RadioButton
-                android:id="@+id/mps1a1202"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:text="@string/mps1a1202" />
-
-            <RadioButton
-                android:id="@+id/mps1a1203"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:text="@string/mps1a1203" />
-
-            <RadioButton
-                android:id="@+id/mps1a1204"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:text="@string/mps1a1204" />
-
-            <RadioButton
-                android:id="@+id/mps1a1205"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:text="@string/mps1a1205" />
 
         </RadioGroup>
 
