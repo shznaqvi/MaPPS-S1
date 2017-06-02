@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:hint="@string/mps1c02sub"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="4" />
 
         <LinearLayout

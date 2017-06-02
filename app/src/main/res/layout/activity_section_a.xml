@@ -196,7 +196,7 @@
             android:digits="0123456789"
             android:hint="@string/mps1a08"
             android:inputType="number"
-            android:maxLength="5" />
+            android:maxLength="10" />
 
         <TextView
             android:layout_width="match_parent"

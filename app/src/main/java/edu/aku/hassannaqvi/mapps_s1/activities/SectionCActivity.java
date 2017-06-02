@@ -237,6 +237,14 @@ public class SectionCActivity extends Activity {
             return false;
         } else {
             mps1c0201.setError(null);
+            if (Double.parseDouble(mps1c0201.getText().toString()) < 0.0 || Double.parseDouble(mps1c0201.getText().toString()) > 99.9) {
+                Toast.makeText(this, "ERROR(invalid): " + getString(R.string.mps1c02), Toast.LENGTH_SHORT).show();
+                mps1c0201.setError("Invalid: Range 0.0 - 99.9");
+                Log.i(TAG, "mps1c0201: Invalid Range 0.0 - 99.9");
+                return false;
+            } else {
+                mps1c0201.setError(null);
+            }
         }
 
         return true;
