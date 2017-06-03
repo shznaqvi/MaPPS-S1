@@ -3,7 +3,10 @@ package edu.aku.hassannaqvi.mapps_s1.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -51,12 +54,25 @@ public class SectionAActivity extends Activity {
     RadioButton mps1a1102;
     @BindView(R.id.fldGrpbtn)
     LinearLayout fldGrpbtn;
+    @BindView(R.id.btnNext)
+    Button btnNext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section_a);
         ButterKnife.bind(this);
+
+        mps1a11.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if (mps1a1101.isChecked()) {
+                    btnNext.setVisibility(View.VISIBLE);
+                } else {
+                    btnNext.setVisibility(View.GONE);
+                }
+            }
+        });
 
         }
 

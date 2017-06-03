@@ -10,6 +10,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +41,22 @@ public class EndingActivity extends Activity {
         setContentView(R.layout.activity_ending);
         ButterKnife.bind(this);
 
-        //mna7a.setEnabled(getIntent().getBooleanExtra("complete", true));
+        Boolean check = getIntent().getExtras().getBoolean("complete");
+
+        if (check) {
+            mps1a1201.setEnabled(true);
+            mps1a1202.setEnabled(false);
+            mps1a1203.setEnabled(false);
+            mps1a1204.setEnabled(false);
+            mps1a1205.setEnabled(false);
+        } else {
+            mps1a1201.setEnabled(false);
+            mps1a1202.setEnabled(true);
+            mps1a1203.setEnabled(true);
+            mps1a1204.setEnabled(true);
+            mps1a1205.setEnabled(true);
+        }
+
 
     }
 
@@ -82,23 +98,12 @@ public class EndingActivity extends Activity {
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
 
-        /*switch (mna7.getCheckedRadioButtonId()) {
-            case R.id.mna7a:
-                AppMain.fc.setiStatus("1");
-                break;
-            case R.id.mna7b:
-                AppMain.fc.setiStatus("2");
-                break;
-            case R.id.mna7c:
-                AppMain.fc.setiStatus("3");
-                break;
-            case R.id.mna7d:
-                AppMain.fc.setiStatus("4");
-                break;
-            default:
-                AppMain.fc.setiStatus("default");
-                break;
-        }*/
+        JSONObject sE = new JSONObject();
+
+        sE.put("mps1a12", mps1a1201.isChecked() ? "1" : mps1a1202.isChecked() ? "2" : mps1a1203.isChecked() ? "3"
+                : mps1a1204.isChecked() ? "4" : mps1a1205.isChecked() ? "5" : "0");
+
+        Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -107,11 +112,11 @@ public class EndingActivity extends Activity {
 //=================== mps1b01 ==============
         if (mps1a12.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.mps1a12), Toast.LENGTH_SHORT).show();
-            mps1a1203.setError("This data is Required!");
+            mps1a1205.setError("This data is Required!");
             Log.i(TAG, "mps1a12: This Data is Required!");
             return false;
         } else {
-            mps1a1203.setError(null);
+            mps1a1205.setError(null);
         }
         return true;
     }
