@@ -253,6 +253,8 @@ public class SectionCActivity extends Activity {
                 return false;
             } else {
                 mps1c0201.setError(null);
+
+
             }
         }
 
