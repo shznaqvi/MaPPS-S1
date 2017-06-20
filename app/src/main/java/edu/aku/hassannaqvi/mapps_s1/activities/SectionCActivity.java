@@ -9,6 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -32,17 +35,20 @@ public class SectionCActivity extends Activity {
     @BindView(R.id.mps1c0104)
     EditText mps1c0104;
 
+    @BindView(R.id.mpssticker)
+    EditText mpssticker;
+
     @BindView(R.id.mps1c0201)
     EditText mps1c0201;
     @BindView(R.id.fldGrpbtn)
     LinearLayout fldGrpbtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section_c);
         ButterKnife.bind(this);
-
     }
 
 
@@ -177,6 +183,7 @@ public class SectionCActivity extends Activity {
         sc.put("mps1c0102", mps1c0102.getText().toString());
         sc.put("mps1c0103", mps1c0103.getText().toString());
         sc.put("mps1c0104", mps1c0104.getText().toString());
+        sc.put("mpssticker", mpssticker.getText().toString());
         sc.put("mps1c02", mps1c0201.getText().toString());
 
 
@@ -230,6 +237,7 @@ public class SectionCActivity extends Activity {
             mps1c0104.setError(null);
         }
 
+
         // =================== mps1c0201 ====================
         if (mps1c0201.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.mps1c02), Toast.LENGTH_SHORT).show();
@@ -248,8 +256,52 @@ public class SectionCActivity extends Activity {
             }
         }
 
+
+        // =================== mpssticker ====================
+        if (mpssticker.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.mpssticker), Toast.LENGTH_SHORT).show();
+            mpssticker.setError("This data is required");
+            Log.d(TAG, " mpssticker : empty ");
+            return false;
+        } else {
+            mpssticker.setError(null);
+        }
+
         return true;
 
+    }
+
+
+    @OnClick(R.id.btnScan)
+    void startScan() {
+        mpssticker.setText(null);
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE_TYPES);
+        integrator.setPrompt("Scan a blood sample sticker");
+        integrator.setCameraId(0);  // Use a specific camera of the device
+        integrator.setBeepEnabled(false);
+        integrator.setBarcodeImageEnabled(true);
+        integrator.setOrientationLocked(false);
+
+        integrator.initiateScan();
+    }
+
+    // Get the results:
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if (result != null) {
+            if (result.getContents() == null) {
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                mpssticker.setText("§" + result.getContents());
+                mpssticker.setEnabled(false);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 

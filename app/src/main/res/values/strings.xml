@@ -17,6 +17,7 @@
     <string name="nextSection">اگلا سیکشن</string>
     <string name="endForm">اختتام</string>
     <string name="digits">1234567890.,+=-qwertyuiopasdfghjklzxcvbnm ?%#@!&amp;QWERTYUIOPASDFGHJKLZXCVBNM</string>
+    <string name="btnScan">Scan</string>
 
 
     <string name="mps1aheading"> معلومات براء سڃاڻپ</string>
@@ -57,6 +58,7 @@
     <string name="mps1c0104">Cold Chain Maintained </string>
     <string name="mps1c02"> هيموگلوبن </string>
     <string name="mps1c02sub">dg/mL </string>
+    <string name="mpssticker">Sticker </string>
 
 
     <!-- Strings related to login -->
