@@ -58,7 +58,6 @@ public class SectionAActivity extends Activity {
     Button btnNext;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
