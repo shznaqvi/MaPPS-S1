@@ -229,7 +229,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(singleForm.COLUMN_UID, AppMain.fc.getUID());
 
 // Which row to update, based on the ID
-        String selection = singleForm._ID + " LIKE ?";
+        String selection = singleForm._ID + " = ?";
         String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
 
         int count = db.update(singleForm.TABLE_NAME,
@@ -457,8 +457,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(singleForm.COLUMN_SB, AppMain.fc.getsB());
-        values.put(singleForm.COLUMN_UID, AppMain.fc.getUID());
-
 
 // Which row to update, based on the ID
         String selection = singleForm._ID + " = ?";

@@ -1,9 +1,12 @@
 package edu.aku.hassannaqvi.mapps_s1.activities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,16 +20,22 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.mapps_s1.R;
+import edu.aku.hassannaqvi.mapps_s1.contracts.FormsContract;
+import edu.aku.hassannaqvi.mapps_s1.core.AppMain;
 import edu.aku.hassannaqvi.mapps_s1.core.DatabaseHelper;
 
 import static android.content.ContentValues.TAG;
 
 public class SectionAActivity extends Activity {
 
+    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
 
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
@@ -58,7 +67,6 @@ public class SectionAActivity extends Activity {
     Button btnNext;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,15 +84,16 @@ public class SectionAActivity extends Activity {
             }
         });
 
-        }
+    }
 
 
     @OnClick(R.id.btnNext)
     void onBtnNextClick() {
 
         if (ValidateForm()) {
+            SaveDraft();
             try {
-                SaveDraft();
+                SaveDraft1();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -110,8 +119,9 @@ public class SectionAActivity extends Activity {
         Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
 
         if (ValidateForm()) {
+            SaveDraft();
             try {
-                SaveDraft();
+                SaveDraft1();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -131,7 +141,7 @@ public class SectionAActivity extends Activity {
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
 
-       /* long updcount = db.addForm(AppMain.fc);
+        long updcount = db.addForm(AppMain.fc);
 
         AppMain.fc.setID(String.valueOf(updcount));
 
@@ -144,14 +154,13 @@ public class SectionAActivity extends Activity {
 
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
-        }*/
+        }
 
         return true;
-
     }
 
 
-   /* public void setGPS() {
+    public void setGPS() {
         SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
 
 //        String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
@@ -179,31 +188,38 @@ public class SectionAActivity extends Activity {
             Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
-         //   Log.e(TAG, "setGPS: " + e.getMessage());
+            Log.e(TAG, "setGPS: " + e.getMessage());
         }
 
-    }*/
+    }
 
-    private void SaveDraft() throws JSONException {
+    private void SaveDraft() {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
 
-      /*  AppMain.VillageName = cravillage.getText().toString();
+        AppMain.fc = new FormsContract();
 
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
 
-       AppMain.fc = new FormsContract();
-
-        AppMain.fc.setUserName(AppMain.username);
-        AppMain.fc.setDeviceID(deviceId);
         AppMain.fc.setHhDT(dtToday);
         AppMain.fc.setTehsil(AppMain.tehsilCode);
         AppMain.fc.sethFacility(AppMain.hfCode);
         AppMain.fc.setLhwCode(AppMain.lhwCode);
-        AppMain.fc.setUccode(getAllUCs.get(crauc.getSelectedItem().toString()));
-        AppMain.fc.setVillagename(AppMain.VillageName);
-        AppMain.fc.setChildId(cra03.getText().toString());
-        AppMain.fc.setTagId(sharedPref.getString("tagName", ""));*/
+        AppMain.fc.setHouseHold(mps1a01.getText().toString());
+        AppMain.fc.setChildId(mps1a02.getText().toString());
+        AppMain.fc.setUserName(AppMain.username);
 
+        //AppMain.fc.setUccode(getAllUCs.get(crauc.getSelectedItem().toString()));
+        AppMain.fc.setVillagename(AppMain.VillageName);
+        AppMain.fc.setTagId(sharedPref.getString("tagName", ""));
+
+        setGPS();
+
+        //   AppMain.fc.setsA(String.valueOf(sa));
+
+        Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
+    }
+
+    private void SaveDraft1() throws JSONException {
         JSONObject sa = new JSONObject();
 
         sa.put("mps1a01", mps1a01.getText().toString());
@@ -214,12 +230,7 @@ public class SectionAActivity extends Activity {
         sa.put("mps1a08", mps1a08.getText().toString());
         sa.put("mps1a11", mps1a1101.isChecked() ? "1" : mps1a1102.isChecked() ? "2" : "0");
 
-
-        // setGPS();
-
-        //   AppMain.fc.setsA(String.valueOf(sa));
-
-        Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
+        AppMain.fc.setsA(String.valueOf(sa));
     }
 
     public boolean ValidateForm() {
@@ -321,7 +332,6 @@ public class SectionAActivity extends Activity {
         } else {
             mps1a1102.setError(null);
         }
-
 
 
         return true;

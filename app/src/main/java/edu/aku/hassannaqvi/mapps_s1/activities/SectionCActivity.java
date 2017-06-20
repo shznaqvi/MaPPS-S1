@@ -19,6 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.mapps_s1.R;
+import edu.aku.hassannaqvi.mapps_s1.contracts.FormsContract;
+import edu.aku.hassannaqvi.mapps_s1.core.AppMain;
 import edu.aku.hassannaqvi.mapps_s1.core.DatabaseHelper;
 
 import static android.content.ContentValues.TAG;
@@ -103,24 +105,37 @@ public class SectionCActivity extends Activity {
 
 
     private boolean UpdateDB() {
+
+        //Long rowId;
         DatabaseHelper db = new DatabaseHelper(this);
 
-       /* long updcount = db.addForm(AppMain.fc);
+        // 1. INSERT FORM
+        //rowId = db.addForm(AppMain.fc);
 
-        AppMain.fc.setID(String.valueOf(updcount));
+        //AppMain.fc.setID(String.valueOf(rowId));
 
-        if (updcount != 0) {
+        //if (rowId != null) {
+
+        Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+        /*AppMain.fc.setUID(
+                (AppMain.fc.getDeviceID() + AppMain.fc.getID()));*/
+        //Toast.makeText(this, "Current Form No: " + AppMain.fc.getUID(), Toast.LENGTH_SHORT).show();
+
+        // 2. UPDATE FORM ROWID
+        int updcount = db.updateSC();
+
+        if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-
-            AppMain.fc.setUID(
-                    (AppMain.fc.getDeviceID() + AppMain.fc.getID()));
-            db.updateFormID();
-
+            return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
-        }*/
+            return false;
+        }
 
-        return true;
+        /*} else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }*/
 
     }
 
@@ -183,8 +198,10 @@ public class SectionCActivity extends Activity {
         sc.put("mps1c0102", mps1c0102.getText().toString());
         sc.put("mps1c0103", mps1c0103.getText().toString());
         sc.put("mps1c0104", mps1c0104.getText().toString());
-        sc.put("mpssticker", mpssticker.getText().toString());
         sc.put("mps1c02", mps1c0201.getText().toString());
+        sc.put("mpssticker", mpssticker.getText().toString());
+
+        AppMain.fc.setsC(String.valueOf(sc));
 
 
         // setGPS();

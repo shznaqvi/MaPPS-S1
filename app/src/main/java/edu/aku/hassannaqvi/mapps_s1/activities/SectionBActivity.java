@@ -20,6 +20,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.mapps_s1.R;
+import edu.aku.hassannaqvi.mapps_s1.contracts.FormsContract;
+import edu.aku.hassannaqvi.mapps_s1.core.AppMain;
 import edu.aku.hassannaqvi.mapps_s1.core.DatabaseHelper;
 
 import static android.content.ContentValues.TAG;
@@ -134,6 +136,7 @@ public class SectionBActivity extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
             if (UpdateDB()) {
                 finish();
                 Toast.makeText(this, "Starting Form Ending Section", Toast.LENGTH_SHORT).show();
@@ -148,24 +151,37 @@ public class SectionBActivity extends Activity {
 
 
     private boolean UpdateDB() {
+
+        //Long rowId;
         DatabaseHelper db = new DatabaseHelper(this);
 
-     /*   long updcount = db.addForm(AppMain.fc);
+        // 1. INSERT FORM
+        //rowId = db.addForm(AppMain.fc);
 
-        AppMain.fc.setID(String.valueOf(updcount));
+        //AppMain.fc.setID(String.valueOf(rowId));
 
-        if (updcount != 0) {
+        //if (rowId != null) {
+
+        /*AppMain.fc.setUID(
+                (AppMain.fc.getDeviceID() + AppMain.fc.getID()));*/
+        //Toast.makeText(this, "Current Form No: " + AppMain.fc.getUID(), Toast.LENGTH_SHORT).show();
+
+        // 2. UPDATE FORM ROWID
+        int updcount = db.updateSB();
+
+
+        if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-
-            AppMain.fc.setUID(
-                    (AppMain.fc.getDeviceID() + AppMain.fc.getID()));
-            db.updateFormID();
-
+            return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
-        }*/
+            return false;
+        }
 
-        return true;
+        /*} else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }*/
 
     }
 
@@ -229,6 +245,8 @@ public class SectionBActivity extends Activity {
         sb.put("mps1b02", mps1b0201.isChecked() ? "1" : mps1b0202.isChecked() ? "2" : mps1b0203.isChecked() ? "3" : "0");
         sb.put("mps1b03", mps1b0301.isChecked() ? "1" : mps1b0302.isChecked() ? "2" : "0");
         sb.put("mps1b04", mps1b04.getText().toString());
+
+        AppMain.fc.setsB(String.valueOf(sb));
 
 
         // setGPS();
